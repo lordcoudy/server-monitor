@@ -35,7 +35,7 @@ def get_app_settings() -> Settings:
 
 def require_api_key(
     settings: Settings = Depends(get_app_settings),
-    api_key: Annotated[str | None, Header(alias="X-API-Key", default=None)] = None,
+    api_key: Annotated[str | None, Header(alias="X-API-Key")] = None,
 ) -> None:
     if not settings.api_token:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="API token is not configured")
