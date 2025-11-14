@@ -1,0 +1,140 @@
+* {
+	box-sizing: border-box;
+	font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #0d1117;
+	color: #c9d1d9;
+}
+
+header {
+	background: #161b22;
+	padding: 1.5rem;
+	border-bottom: 1px solid #30363d;
+}
+
+h1,
+h2 {
+	margin: 0 0 0.5rem;
+}
+
+main {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+	gap: 1rem;
+	padding: 1.5rem;
+}
+
+section {
+	border: 1px solid #30363d;
+	border-radius: 8px;
+	padding: 1rem;
+	background: #161b22;
+}
+
+.status-line {
+	display: flex;
+	gap: 1rem;
+	flex-wrap: wrap;
+	font-size: 0.9rem;
+}
+
+.bars {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+	gap: 0.5rem;
+}
+
+.bars .bar {
+	background: #21262d;
+	border-radius: 4px;
+	height: 60px;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	position: relative;
+}
+
+.bars .bar span {
+	position: absolute;
+	font-size: 0.75rem;
+	top: 4px;
+	left: 6px;
+}
+
+.bars .bar div {
+	width: 100%;
+	border-radius: 4px;
+	background: linear-gradient(180deg, #58a6ff, #1f6feb);
+}
+
+.bar-wrapper {
+	margin-bottom: 1rem;
+}
+
+.progress {
+	background: #21262d;
+	border-radius: 4px;
+	height: 18px;
+	overflow: hidden;
+}
+
+.progress div {
+	height: 100%;
+	background: linear-gradient(90deg, #3fb950, #238636);
+}
+
+section table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.85rem;
+}
+
+section table th,
+section table td {
+	text-align: left;
+	padding: 0.4rem;
+	border-bottom: 1px solid #30363d;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.restart-controls {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.restart-controls input {
+	flex: 1;
+	background: #0d1117;
+	border: 1px solid #30363d;
+	color: #c9d1d9;
+	padding: 0.4rem;
+	border-radius: 4px;
+}
+
+.restart-controls button {
+	padding: 0.4rem 0.8rem;
+	border: none;
+	border-radius: 4px;
+	background: #f85149;
+	color: #fff;
+	cursor: pointer;
+}
+
+.restart-controls button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.hint {
+	font-size: 0.8rem;
+	opacity: 0.7;
+}
