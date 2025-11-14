@@ -32,6 +32,10 @@ Open `http://localhost:8000` to view the dashboard.
 | `MONITOR_RESTART_COMMAND` | `sudo /sbin/reboot` | Shell command that will be executed when restart is requested. |
 | `MONITOR_POLL_INTERVAL` | `2` | Frontend polling interval in seconds. |
 | `MONITOR_HOSTNAME_LABEL` | `server` | Friendly name displayed in the UI header. |
+| `MONITOR_METRICS_REFRESH` | `1.5` | Backend cache refresh cadence (seconds) for light metrics (CPU, RAM, load). |
+| `MONITOR_HEAVY_REFRESH` | `5` | Refresh cadence (seconds) for heavy stats (temperatures, disks, processes). Increase to lower CPU usage. |
+| `MONITOR_TOP_PROCESSES` | `6` | Number of processes returned to the UI after sorting by CPU load. |
+| `MONITOR_PROCESS_SCAN_LIMIT` | `200` | Cap on how many processes are inspected each refresh (trade accuracy for lower overhead). |
 
 > 💡 Install `lm-sensors` (`sudo apt install lm-sensors`) and run `sudo sensors-detect` for full temperature coverage.
 

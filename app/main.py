@@ -50,7 +50,7 @@ async def root_index() -> FileResponse:
 
 @app.get("/api/metrics")
 async def api_metrics(settings: Settings = Depends(get_app_settings)) -> dict:
-    data = collect_metrics()
+    data = collect_metrics(settings)
     data["settings"] = {
         "hostname_label": settings.hostname_label,
         "poll_interval_seconds": settings.poll_interval_seconds,

@@ -22,6 +22,10 @@ class Settings:
     restart_command: str = os.getenv("MONITOR_RESTART_COMMAND", "sudo /sbin/reboot")
     poll_interval_seconds: float = float(os.getenv("MONITOR_POLL_INTERVAL", "2"))
     hostname_label: str = os.getenv("MONITOR_HOSTNAME_LABEL", "server")
+    metrics_refresh_seconds: float = float(os.getenv("MONITOR_METRICS_REFRESH", "1.5"))
+    heavy_metrics_refresh_seconds: float = float(os.getenv("MONITOR_HEAVY_REFRESH", "5"))
+    top_process_limit: int = int(os.getenv("MONITOR_TOP_PROCESSES", "6"))
+    process_scan_limit: int = int(os.getenv("MONITOR_PROCESS_SCAN_LIMIT", "200"))
 
 
 @lru_cache(maxsize=1)
