@@ -54,6 +54,24 @@ pytest
 
 Tests rely on FastAPI's `TestClient` and stub out restart execution so they won't reboot your development machine.
 
+## Docker Compose
+
+```bash
+# Copy and edit environment variables
+cp .env.example .env
+
+# Build and start
+docker compose up -d
+
+# View logs
+docker compose logs -f
+
+# Stop
+docker compose down
+```
+
+The container runs with `pid: host` and mounts `/proc`, `/sys`, and `/` (read-only) so `psutil` reports real host metrics instead of container-level stats.
+
 ## Deploying as a service
 
 Create `/etc/systemd/system/server-monitor.service` with:

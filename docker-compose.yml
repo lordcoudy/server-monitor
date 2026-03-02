@@ -1,0 +1,31 @@
+services:
+  server-monitor:
+    build: .
+    container_name: server-monitor
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    # Host PID namespace lets psutil see real host processes & CPU stats
+    pid: host
+    volumes:
+      # Expose host filesystem root as read-only so psutil can read disk stats
+      - /:/host:ro
+      # Needed for temperature sensors
+      - /sys:/sys:ro
+      - /proc:/proc:ro
+    environment:
+      MONITOR_API_TOKEN: ${MONITOR_API_TOKEN:-changeme}
+      MONITOR_ALLOW_RESTART: ${MONITOR_ALLOW_RESTART:-0}
+      MONITOR_RESTART_COMMAND: ${MONITOR_RESTART_COMMAND:-sudo /sbin/reboot}
+      MONITOR_POLL_INTERVAL: ${MONITOR_POLL_INTERVAL:-2}
+      MONITOR_HOSTNAME_LABEL: ${MONITOR_HOSTNAME_LABEL:-server}
+      MONITOR_METRICS_REFRESH: ${MONITOR_METRICS_REFRESH:-1.5}
+      MONITOR_HEAVY_REFRESH: ${MONITOR_HEAVY_REFRESH:-5}
+      MONITOR_TOP_PROCESSES: ${MONITOR_TOP_PROCESSES:-6}
+      MONITOR_PROCESS_SCAN_LIMIT: ${MONITOR_PROCESS_SCAN_LIMIT:-200}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
